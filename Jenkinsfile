@@ -11,5 +11,10 @@ pipeline {
              sh 'xelatex sample.tex'
          }
       }
+      stage('Publish') {
+        steps {
+          ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
+        }
+      }
    }
 }
