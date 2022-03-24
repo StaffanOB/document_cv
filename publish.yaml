@@ -1,0 +1,11 @@
+---
+- hosts: nas
+  become: True
+  tasks:
+    - name: Copying files to NAS
+      copy:
+        src: /var/lib/jenkins/workspace/latex-cv/sample.pdf
+        dest: /home/staffan/Downloads
+        owner: staffan
+        group: staffan        
+        mode: 0644
