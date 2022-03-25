@@ -1,6 +1,16 @@
 pipeline {
    agent none
    stages {
+      stage('get git tag') {
+         steps {
+            script {
+               latestTag = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
+               env.BUILD_VERSION = latestTag
+               echo "env-BUILD_VERSION"
+               echo "${env.BUILD_VERSION}"
+            }
+         }
+      }
       stage('Build') {
          agent {
             docker {
@@ -8,7 +18,7 @@ pipeline {
             }
          }
          steps {
-             sh 'xelatex sample.tex'
+             sh 'xelatex sample.tex -job-name=sample-${env.BUILD_VERSION}.pdf'
          }
       }
       stage('Store') {
