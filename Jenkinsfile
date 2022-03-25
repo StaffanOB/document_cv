@@ -1,7 +1,8 @@
 pipeline {
-  agent none
-    stages {
-            stage('Build') {
+    agent none
+        stages {
+            stage('get git tag') {
+              stage('Build') {
                 agent {
                     docker {
                         image 'blang/latex:ubuntu'
@@ -15,13 +16,20 @@ pipeline {
                             echo "${env.BUILD_VERSION}"
                     }
                 }
+            }
+            stage('Build') {
+                agent {
+                    docker {
+                        image 'blang/latex:ubuntu'
+                    }
+                }
                 steps {
                     sh 'xelatex sample.tex -job-name=sample-${env.BUILD_VERSION}.pdf'
                 }
             }
             stage('Store') {
                 agent {
-                    label "node01" 
+                    label "node01"
                 }
                 steps {
                     ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
@@ -30,7 +38,7 @@ pipeline {
 /*
             stage('Publish') {
                 agent {
-                    label "node01" 
+                    label "node01"
                 }
                 steps {
                     // ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
