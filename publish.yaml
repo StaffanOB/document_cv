@@ -1,6 +1,6 @@
 ---
 - hosts: nas
-  become: True
+  become: False
   tasks:
     - name: Copying files to NAS
       copy:
