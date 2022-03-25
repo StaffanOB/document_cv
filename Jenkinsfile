@@ -11,9 +11,7 @@ pipeline {
                     script {
                         latestTag = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
                             env.BUILD_VERSION = latestTag
-                            echo "env-BUILD_VERSION"
-                            echo "${env.BUILD_VERSION}"
-                            echo "${BUILD_NUMBER}"
+                            echo "Building version ${BUILD_VERSION} with build number ${BUILD_NUMBER}."
                     }
                 }
             }
@@ -35,11 +33,9 @@ pipeline {
                     label "node01"
                 }
                 steps {
-                    //ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
-                    echo "Publish document"
+                    ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, extras: '--extra-vars \'{"version":"${BUILD_VERSION}","build":"${BUILD_NUMBER}"}\'', installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
                 }
             }
-/*
             stage('Publish') {
                 agent {
                     label "node01"
@@ -49,7 +45,6 @@ pipeline {
                     echo "Publish document"
                 }
             }
-*/
 
         }
 }
