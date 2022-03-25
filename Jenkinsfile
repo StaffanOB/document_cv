@@ -16,6 +16,7 @@ pipeline {
                     }
                 }
             }
+
             stage('Build') {
                 agent {
                     docker {
@@ -24,11 +25,10 @@ pipeline {
                 }
                 steps {
                     sh 'xelatex sample.tex'
-                }
-                steps {
                     sh 'mv sample.pdf sample-$BUILD_VERSION-$BUILD_NUMBER.pdf'
                 }
             }
+
             stage('Store') {
                 agent {
                     label "node01"
