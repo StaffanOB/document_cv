@@ -23,7 +23,8 @@ pipeline {
                     }
                 }
                 steps {
-                    sh 'xelatex sample.tex -job-name=sample-${env.BUILD_VERSION}.pdf'
+                    sh 'xelatex sample.tex'
+                    sh 'mv sample.pdf sample-${env.BUILD_VERSION}.pdf'
                 }
             }
             stage('Store') {
