@@ -1,10 +1,13 @@
 ---
 - hosts: nas
   become: False
+  vars: 
+    current_version: "{{ version  }}" 
+    current_build: "{{ build  }}"
   tasks:
     - name: Copying files to NAS
       copy:
-        src: /var/lib/jenkins/workspace/latex-cv/sample.pdf
+        src: /var/lib/jenkins/workspace/latex-cv/sample-{{ current_version  }}-{{ current_build  }}.pdf
         dest: /home/staffan/Downloads
         owner: staffan
         group: staffan        
