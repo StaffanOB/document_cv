@@ -28,6 +28,7 @@ pipeline {
         steps {
           ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
         }
+         /*
       stage('Publish') {
         agent {
            label "node01" 
@@ -37,5 +38,6 @@ pipeline {
           echo "Publish document"
         }
       }
+      */
    }
 }
