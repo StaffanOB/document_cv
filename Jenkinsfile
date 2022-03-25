@@ -11,12 +11,20 @@ pipeline {
              sh 'xelatex sample.tex'
          }
       }
-      stage('Publish') {
+      stage('Store') {
         agent {
            label "node01" 
         }
         steps {
           ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
+        }
+      stage('Publish') {
+        agent {
+           label "node01" 
+        }
+        steps {
+          // ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
+          echo "Publish document"
         }
       }
    }
