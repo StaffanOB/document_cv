@@ -13,6 +13,7 @@ pipeline {
                             env.BUILD_VERSION = latestTag
                             echo "env-BUILD_VERSION"
                             echo "${env.BUILD_VERSION}"
+                            echo "${BUILD_NUMBER}"
                     }
                 }
             }
@@ -34,7 +35,8 @@ pipeline {
                     label "node01"
                 }
                 steps {
-                    ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
+                    //ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
+                    echo "Publish document"
                 }
             }
 /*
