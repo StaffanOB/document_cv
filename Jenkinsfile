@@ -13,7 +13,7 @@ pipeline {
                         env.BUILD_VERSION = latestTag
                         echo "================================================================="
                         echo "Building version ${BUILD_VERSION} with build number ${BUILD_NUMBER}."
-                        echo $latestTag
+                        echo latestTag
                     }
                 }
             }
