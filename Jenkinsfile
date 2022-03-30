@@ -10,16 +10,7 @@ pipeline {
                 steps {
                     script {
                         //latestTag = sh(returnStdout: true, script: "git tag --sort=-creatordate | head -n 1").trim()
-                        latestTag = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
-                        env.BUILD_VERSION = latestTag
-                        echo "================================================================="
-                        echo "Building version ${BUILD_VERSION} with build number ${BUILD_NUMBER}."
-                        
-                        
-                        echo "BRANCH_NAME ${BRANCH_NAME}."
-                        echo "BUILD_VERSION ${BUILD_VERSION}."
-                        echo latestTag
-                        echo "BUILD_NUMBER ${BUILD_NUMBER}."
+                        echo "Building branch ${BRANCH_NAME} with build number ${BUILD_NUMBER}."
                     }
                 }
             }
@@ -43,7 +34,7 @@ pipeline {
                 }
                 steps {
                     echo "================================================================="
-                    ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, extras: '--extra-vars \'{"version":"${BUILD_VERSION}","build":"${BUILD_NUMBER}"}\'', installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
+                    ansiblePlaybook credentialsId: 'desktop_staffan', disableHostKeyChecking: true, extras: '--extra-vars \'{"branch":"${BRANCH_NAME}","build":"${BUILD_NUMBER}"}\'', installation: 'Ansible', inventory: 'publish.inv', playbook: 'publish.yaml'
                 }
             }
             stage('Publish') {
