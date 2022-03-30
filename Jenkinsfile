@@ -23,8 +23,8 @@ pipeline {
                     }
                 }
                 steps {
-                    sh 'xelatex sample.tex'
-                    sh 'mv sample.pdf sample-$BUILD_VERSION-$BUILD_NUMBER.pdf'
+                    sh 'xelatex ./doc/main.tex'
+                    sh 'mv ./doc/main.pdf main-$BUILD_VERSION-$BUILD_NUMBER.pdf'
                 }
             }
 

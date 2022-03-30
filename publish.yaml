@@ -7,7 +7,7 @@
   tasks:
     - name: Copying files to NAS
       copy:
-        src: sample-{{ current_version  }}-{{ current_build  }}.pdf
+        src: ./doc/main.-{{ current_version  }}-{{ current_build  }}.pdf
         dest: /home/staffan/Downloads
         owner: staffan
         group: staffan        
