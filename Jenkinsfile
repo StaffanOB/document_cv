@@ -23,8 +23,8 @@ pipeline {
                     }
                 }
                 steps {
-                    sh 'xelatex ./doc/main.tex'
-                    sh 'mv ./doc/main.pdf ./doc/main-$BUILD_NUMBER.pdf'
+                    sh 'xelatex ./doc/main.tex -output-directory=./out/'
+                    // sh 'mv ./doc/main.pdf ./doc/main.pdf'
                 }
             }
 
@@ -48,3 +48,4 @@ pipeline {
 
         }
 }
+
