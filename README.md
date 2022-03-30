@@ -1,7 +1,10 @@
 # Staffan Björnsons CV
-Alot of good stuff more stuf to add
-added som more stuff 
-testing
-mer testing
+Projec is setup to test building LaTex flies with Jenkins in a multi-branch pipeline. Trying to incorperate as meanny best practises as posible. 
 
-testar massa
+The pipeline uses docker to build a PDF and then Ansible to "publish" the document to a NAS. 
+
+TODO:
+- Create automated releases 
+- Implement Conventional Commits
+- Setting version nuber in the document
+
