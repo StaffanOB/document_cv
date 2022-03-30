@@ -14,6 +14,10 @@ pipeline {
                         echo "================================================================="
                         echo "Building version ${BUILD_VERSION} with build number ${BUILD_NUMBER}."
                         echo latestTag
+                        
+                        echo "BRANCH_NAME ${BRANCH_NAME}."
+                        echo "BUILD_VERSION ${BUILD_VERSION}."
+                        echo "BUILD_NUMBER ${BUILD_NUMBER}."
                     }
                 }
             }
