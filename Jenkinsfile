@@ -24,7 +24,7 @@ pipeline {
                 }
                 steps {
                     sh 'xelatex ./doc/main.tex'
-                    sh 'mv ./doc/main.pdf main-$BUILD_VERSION-$BUILD_NUMBER.pdf'
+                    sh 'mv ./doc/main.pdf main-$BUILD_NUMBER.pdf'
                 }
             }
 
