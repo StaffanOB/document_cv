@@ -8,3 +8,4 @@ TODO:
 - Implement Conventional Commits
 - Setting version nuber in the document
 
+This is a working progress and will end up building my CV document.
