@@ -23,7 +23,7 @@ pipeline {
                     }
                 }
                 steps {
-                    sh 'xelatex ./doc/main.tex -output-directory=./out/'
+                    sh 'xelatex ./doc/main.tex'
                     // sh 'mv ./doc/main.pdf ./doc/main.pdf'
                 }
             }

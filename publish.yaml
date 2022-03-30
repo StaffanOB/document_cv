@@ -7,7 +7,7 @@
   tasks:
     - name: Copying files to NAS
       copy:
-        src: ./out/main.pdf
+        src: ./main.pdf
         dest: /home/staffan/Downloads
         owner: staffan
         group: staffan        
