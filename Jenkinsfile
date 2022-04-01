@@ -9,7 +9,7 @@ pipeline {
                 }
                 steps {
                     script {
-                        //latestTag = sh(returnStdout: true, script: "git tag --sort=-creatordate | head -n 1").trim()
+                        latestTag = sh(returnStdout: true, script: "git tag --sort=-creatordate | head -n 1").trim()
                         env.BUILD_VERSION = latestTag
                         echo "Tag: ${BUILD_VERSION} \n Build: ${BUILD_NUMBER} \n Branch: ${BRANCH_NAME}"
                         echo "Building branch ${BRANCH_NAME} with build number ${BUILD_NUMBER}."
